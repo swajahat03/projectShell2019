@@ -2,7 +2,7 @@
   <div class="todos">
     <div class="columns is-centered">
       <div class="column is-half is-block">
-          <h5 class="is-5 title">My ToDos</h5>
+          <h5 class="is-5 title">My TODOs</h5>
       </div>
     </div>
     <div class="columns is-centered">
@@ -14,7 +14,7 @@
     </div>
     <section class="newTodo columns is-centered">
       <div class="column is-half">
-        <h5 class="title is-5">New ToDo</h5>
+        <h5 class="title is-5">Type in a new TODO</h5>
         <form v-on:submit.prevent="onSubmit">
           <b-field label="Title">
             <b-input v-model="newTodo.title"/>
@@ -51,6 +51,7 @@ export default {
   },
   methods: {
     onSubmit () {
+      console.log("submitted")
       this.$store.dispatch('addToDo', this.newTodo).then(() => {
         this.newTodo.title = null;
       })
