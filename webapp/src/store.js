@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+<<<<<<< HEAD
 import VuexPersist from "vuex-persist";
 import { stat } from "fs";
 
@@ -55,4 +56,41 @@ export default new Vuex.Store({
       commit("checkbox", toDo)
     }
   }
+=======
+import axios from "axios";
+
+Vue.use(Vuex);
+
+export const mutations = {
+  login: function(state) {
+    state.loginState = { ...state.loginState, loggedIn: true };
+  },
+  logout: function(state) {
+    state.loginState = { ...state.loginState, loggedIn: false };
+  }
+};
+
+export const actions = {
+  login: function({ commit }, payload) {
+    const { email, password } = payload;
+    return axios.post("/api/login", { email, password }).then(() => {
+      commit("login");
+    });
+  },
+  logout: function({ commit }) {
+    return axios.get("/api/logout").then(() => {
+      commit("logout");
+    });
+  }
+};
+
+export default new Vuex.Store({
+  state: {
+    loginState: {
+      loggedIn: false
+    }
+  },
+  mutations,
+  actions
+>>>>>>> 10fc8687561adf42e9906f3b66dfc87df03f59d9
 });
